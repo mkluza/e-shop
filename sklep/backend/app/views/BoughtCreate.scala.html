@@ -1,0 +1,28 @@
+@import controllers.CreateBoughtForm
+@(bought: Form[CreateBoughtForm], users: Seq[User], order: Seq[Order])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+    @form(controllers.routes.BoughtViewController.createBoughtHandle) {
+        @helper.CSRF.formField
+
+        <label for="user"></label>
+        <select name="userId" id="user">
+        @for(entry <- users) {
+            <option value="@entry.id">@entry.email</option>
+        }
+        </select>
+
+        <label for="order"></label>
+        <select name="orderId" id="order">
+        @for(entry <- order) {
+            <option value="@entry.id">@entry.id</option>
+        }
+        </select>
+
+        <div class="buttons">
+            <input type="submit" value="Add Bought"/>
+        </div>
+    }

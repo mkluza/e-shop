@@ -1,0 +1,174 @@
+
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET           /                                            controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET           /count                                       controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET           /message                                     controllers.AsyncController.message
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                                controllers.Assets.versioned(path="/public", file: Asset)
+
+### FORM
+
+#AccountViewController
+#GET           /form/account/read-all                 controllers.UserViewController.readAllAccount
+#GET           /form/account/create                   controllers.UserViewController.createAccount
+#POST          /form/account/create/handle            controllers.UserViewController.createAccountHandle
+#GET           /form/account/update/:id               controllers.UserViewController.updateAccount(id: Long)
+#POST          /form/account/update/handle            controllers.UserViewController.updateAccountHandle
+#GET           /form/account/delete/:id               controllers.UserViewController.deleteAccount(id: Long)
+
+#CategoryViewController
+GET           /form/category/read-all                      controllers.CategoryViewController.readAllCategories
+GET           /form/category/create                        controllers.CategoryViewController.createCategory
+POST          /form/category/create/handle                 controllers.CategoryViewController.createCategoryHandle
+GET           /form/category/update/:id                    controllers.CategoryViewController.updateCategory(id: Long)
+POST          /form/category/update/handle                 controllers.CategoryViewController.updateCategoryHandle
+GET           /form/category/delete/:id                    controllers.CategoryViewController.deleteCategory(id: Long)
+
+#AddressViewController
+GET           /form/address/read-all                       controllers.AddressViewController.readAllAddress
+GET           /form/address/create                         controllers.AddressViewController.createAddress
+POST          /form/address/create/handle                  controllers.AddressViewController.createAddressHandle
+GET           /form/address/update/:providerKey            controllers.AddressViewController.updateAddress(providerKey: String)
+POST          /form/address/update/handle                  controllers.AddressViewController.updateAddressHandle
+GET           /form/address/delete/:id                     controllers.AddressViewController.deleteAddress(id: Long)
+
+#CartViewController
+GET           /form/cart/read-all                          controllers.CartViewController.readAllCart
+GET           /form/cart/create                            controllers.CartViewController.createCart
+POST          /form/cart/create/handle                     controllers.CartViewController.createCartHandle
+GET           /form/cart/update/:id                        controllers.CartViewController.updateCart(id: Long)
+POST          /form/cart/update/handle                     controllers.CartViewController.updateCartHandle
+GET           /form/cart/delete/:id                        controllers.CartViewController.deleteCart(id: Long)
+
+#BoughtViewController
+GET           /form/bought/read-all                        controllers.BoughtViewController.readAllBought
+GET           /form/bought/create                          controllers.BoughtViewController.createBought
+POST          /form/bought/create/handle                   controllers.BoughtViewController.createBoughtHandle
+GET           /form/bought/update/:id                      controllers.BoughtViewController.updateBought(id: Long)
+POST          /form/bought/update/handle                   controllers.BoughtViewController.updateBoughtHandle
+GET           /form/bought/delete/:id                      controllers.BoughtViewController.deleteBought(id: Long)
+
+#FavouriteProductViewController
+GET           /form/fav-product/read-all                   controllers.FavouriteProductViewController.readAllFavouriteProduct
+GET           /form/fav-product/create                     controllers.FavouriteProductViewController.createFavouriteProduct
+POST          /form/fav-product/create/handle              controllers.FavouriteProductViewController.createFavouriteProductHandle
+GET           /form/fav-product/update/:id                 controllers.FavouriteProductViewController.updateFavouriteProduct(id: Long)
+POST          /form/fav-product/update/handle              controllers.FavouriteProductViewController.updateFavouriteProductHandle
+GET           /form/fav-product/delete/:id                 controllers.FavouriteProductViewController.deleteFavouriteProduct(id: Long)
+
+#ProductViewController
+GET           /form/product/read-all                       controllers.ProductViewController.readAllProduct
+GET           /form/product/create                         controllers.ProductViewController.createProduct
+POST          /form/product/create/handle                  controllers.ProductViewController.createProductHandle
+GET           /form/product/update/:id                     controllers.ProductViewController.updateProduct(id: Long)
+POST          /form/product/update/handle                  controllers.ProductViewController.updateProductHandle
+GET           /form/product/delete/:id                     controllers.ProductViewController.deleteProduct(id: Long)
+
+#OrderViewController
+GET           /form/order/read-all                         controllers.OrderViewController.readAllOrder
+GET           /form/order/create                           controllers.OrderViewController.createOrder
+POST          /form/order/create/handle                    controllers.OrderViewController.createOrderHandle
+GET           /form/order/update/:id                       controllers.OrderViewController.updateOrder(id: Long)
+POST          /form/order/update/handle                    controllers.OrderViewController.updateOrderHandle
+GET           /form/order/delete/:id                       controllers.OrderViewController.deleteOrder(id: Long)
+
+#OpinionViewController
+GET           /form/opinion/read-all                       controllers.OpinionViewController.readAllOpinion
+GET           /form/opinion/create                         controllers.OpinionViewController.createOpinion
+POST          /form/opinion/create/handle                  controllers.OpinionViewController.createOpinionHandle
+GET           /form/opinion/update/:id                     controllers.OpinionViewController.updateOpinion(id: Long)
+POST          /form/opinion/update/handle                  controllers.OpinionViewController.updateOpinionHandle
+GET           /form/opinion/delete/:id                     controllers.OpinionViewController.deleteOpinion(id: Long)
+
+#UserViewController
+#GET           /form/user/read-all                    controllers.UserViewController.readAllUser
+#GET           /form/user/create                      controllers.UserViewController.createUser
+#POST          /form/user/create/handle               controllers.UserViewController.createUserHandle
+#GET           /form/user/update/:id                  controllers.UserViewController.updateUser(id: Long)
+#POST          /form/user/update/handle               controllers.UserViewController.updateUserHandle
+#GET           /form/user/delete/:id                  controllers.UserViewController.deleteUser(id: Long)
+
+
+### REST
+
+#AccountController
+#POST          /account/create                        controllers.UserController.createAccount
+#GET           /account/read/:id                      controllers.UserController.readAccount(id:Long)
+#GET           /account/read-all                      controllers.UserController.readAllAccounts
+#PUT           /accounts/update                       controllers.UserController.updateAccount
+#DELETE        /accounts/delete/:id                   controllers.UserController.deleteUser(id:Long)
+
+#BoughtController
+POST          /bought/create                               controllers.BoughtController.createBought
+GET           /bought/read/:id                             controllers.BoughtController.readBought(id:Long)
+GET           /bought/read-all                             controllers.BoughtController.readAllBought
+PUT           /bought/update                               controllers.BoughtController.updateBought
+DELETE        /bought/delete/:id                           controllers.BoughtController.deleteBought(id:Long)
+
+#CartController
+POST          /cart/create                                 controllers.CartController.createCart
+GET           /cart/read/:id                               controllers.CartController.readCart(id:Long)
+GET           /cart/read-by-user/:providerKey              controllers.CartController.readCartByUser(providerKey:String)
+GET           /cart/read-all                               controllers.CartController.readAllCarts
+PUT           /cart/update                                 controllers.CartController.updateCart
+DELETE        /cart/delete/:id                             controllers.CartController.deleteCart(id:Long)
+
+#CategoryController
+POST          /category/create                             controllers.CategoryController.createCategory
+GET           /category/read/:id                           controllers.CategoryController.readCategory(id:Long)
+GET           /category/read-all                           controllers.CategoryController.readAllCategories
+PUT           /category/update                             controllers.CategoryController.updateCategory
+DELETE        /category/delete/:id                         controllers.CategoryController.deleteCategory(id:Long)
+
+#FavouriteProductController
+POST          /fav-product/create                          controllers.FavouriteProductController.createFavouriteProduct
+GET           /fav-product/read/:id                        controllers.FavouriteProductController.readFavouriteProduct(id:Long)
+GET           /fav-product/read-all                        controllers.FavouriteProductController.readAllFavouriteProduct
+PUT           /fav-product/update                          controllers.FavouriteProductController.updateFavouriteProduct
+DELETE        /fav-product/delete/:id                      controllers.FavouriteProductController.deleteFavouriteProduct(id:Long)
+
+#OpinionController
+POST          /opinion/create                              controllers.OpinionController.createOpinion
+GET           /opinion/read/:id                            controllers.OpinionController.readOpinion(id:Long)
+GET           /opinion/read-all                            controllers.OpinionController.readAllOpinion
+PUT           /opinion/update                              controllers.OpinionController.updateOpinion
+DELETE        /opinion/delete/:id                          controllers.OpinionController.deleteOpinion(id:Long)
+
+#OrderController
+POST          /order/create                                controllers.OrderController.createOrder
+GET           /order/read/:id                              controllers.OrderController.readOrder(id:Long)
+GET           /order/read-all                              controllers.OrderController.readAllOrder
+PUT           /order/update                                controllers.OrderController.updateOrder
+DELETE        /order/delete/:id                            controllers.OrderController.deleteOrder(id:Long)
+
+#AddressController
+POST          /address/create                              controllers.AddressController.createAddress
+GET           /address/read/:providerKey                   controllers.AddressController.readAddress(providerKey:String)
+GET           /address/read-all                            controllers.AddressController.readAllAddresses
+PUT           /address/update                              controllers.AddressController.updateAddress
+DELETE        /address/delete/:id                          controllers.AddressController.deleteAddress(id:Long)
+
+#ProductController
+POST          /product/create                              controllers.ProductController.createProduct
+GET           /product/read/:id                            controllers.ProductController.readProduct(id:Long)
+GET           /product/read-by-category/:categoryId        controllers.ProductController.readProductByCategory(categoryId: Long)
+GET           /product/read-all                            controllers.ProductController.readAllProducts
+PUT           /product/update                              controllers.ProductController.updateProduct
+DELETE        /product/delete/:id                          controllers.ProductController.deleteProduct(id: Long)
+
+#UserController
+#POST          /user/create                           controllers.UserController.createUser
+#GET           /user/read/:id                         controllers.UserController.readUser(id:Long)
+#GET           /user/read-all                         controllers.UserController.readAllUsers
+#PUT           /user/update                           controllers.UserController.updateUser
+#DELETE        /user/delete/:id                       controllers.UserController.deleteUser(id: Long)
+
+# Authentication
+GET           /authenticate/:provider                      controllers.SocialAuthController.authenticate(provider: String)

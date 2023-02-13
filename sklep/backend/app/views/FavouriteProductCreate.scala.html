@@ -1,0 +1,28 @@
+@import controllers.CreateFavouriteProductForm
+@(favouriteProduct: Form[CreateFavouriteProductForm], users: Seq[User], product: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
+
+    @import helper._
+
+    @flash.get("success").getOrElse("")
+
+    @form(controllers.routes.FavouriteProductViewController.createFavouriteProductHandle) {
+        @helper.CSRF.formField
+
+        <label for="user"></label>
+        <select name="userId" id="user">
+        @for(entry <- users) {
+            <option value="@entry.id">@entry.email</option>
+        }
+        </select>
+
+        <label for="product"></label>
+        <select name="productId" id="product">
+        @for(entry <- product) {
+            <option value="@entry.id">@entry.name</option>
+        }
+        </select>
+
+        <div class="buttons">
+            <input type="submit" value="Add Favourite Product"/>
+        </div>
+    }

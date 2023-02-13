@@ -1,0 +1,11 @@
+@(carts: Seq[Cart])
+
+@for(cart <- carts) {
+    <strong>@cart.id</strong>
+    @cart.providerKey
+    @cart.productId
+    @cart.amount
+    <a href="@controllers.routes.CartViewController.updateCart(cart.id)">Edit</a>
+    <a href="@controllers.routes.CartViewController.deleteCart(cart.id)">Delete</a>
+    <br>
+}

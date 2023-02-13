@@ -1,0 +1,33 @@
+@import controllers.UpdateAddressForm
+@(address: Form[UpdateAddressForm], users: Seq[User])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.AddressViewController.updateAddressHandle) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@address("id").value" type="hidden" />
+    @inputText(address("firstname"))
+    @inputText(address("lastname"))
+    @inputText(address("city"))
+    @inputText(address("zipcode"))
+    @inputText(address("street"))
+    @inputText(address("phoneNumber"))
+
+    <label for="user"></label>
+    <select name="userId" id="user">
+    @for(entity <- users) {
+        @if(entity.id.toString == address("user").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.email</option>
+        } else {
+            <option value="@entity.id">@entity.email</option>
+        }
+
+    }
+    </select>
+
+    <div class="buttons">
+        <input type="submit" value="Update Address"/>
+    </div>
+}

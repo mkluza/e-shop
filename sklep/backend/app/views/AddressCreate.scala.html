@@ -1,0 +1,27 @@
+@import controllers.CreateAddressForm
+@(address: Form[CreateAddressForm], users: Seq[User])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.AddressViewController.createAddressHandle) {
+    @helper.CSRF.formField
+    @inputText(address("firstname"))
+    @inputText(address("lastname"))
+    @inputText(address("city"))
+    @inputText(address("zipcode"))
+    @inputText(address("street"))
+    @inputText(address("phoneNumber"))
+
+    <label for="user"></label>
+    <select name="userId" id="user">
+    @for(entry <- users) {
+        <option value="@entry.id">@entry.email</option>
+    }
+    </select>
+
+    <div class="buttons">
+        <input type="submit" value="Add Address"/>
+    </div>
+}

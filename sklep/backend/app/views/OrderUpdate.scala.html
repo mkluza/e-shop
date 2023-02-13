@@ -1,0 +1,40 @@
+@import controllers.UpdateOrderForm
+@(order: Form[UpdateOrderForm], carts: Seq[Cart], addresses: Seq[Address])(implicit request: MessagesRequestHeader, flash: Flash)
+
+    @import helper._
+
+    @flash.get("success").getOrElse("")
+
+    @form(controllers.routes.OrderViewController.updateOrderHandle) {
+        @helper.CSRF.formField
+        <input name="id" id="id" value="@order("id").value" type="hidden" />
+
+        <label for="carts"></label>
+        <select name="cartId" id="cart">
+        @for(entity <- carts) {
+            @if(entity.id.toString == order("cart").value.getOrElse(0)) {
+                <option value="@entity.id" selected>@entity.id</option>
+            } else {
+                <option value="@entity.id">@entity.id</option>
+            }
+
+        }
+        </select>
+
+        <label for="addresses"></label>
+        <select name="addressId" id="address">
+        @for(entity <- addresses) {
+            @if(entity.id.toString == order("address").value.getOrElse(0)) {
+                <option value="@entity.id" selected>@entity.id</option>
+            } else {
+                <option value="@entity.id">@entity.id</option>
+            }
+
+        }
+        </select>
+
+
+        <div class="buttons">
+            <input type="submit" value="Update Order"/>
+        </div>
+    }

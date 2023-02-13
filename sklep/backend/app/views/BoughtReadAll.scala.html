@@ -1,0 +1,10 @@
+@(bought: Seq[Bought])
+
+@for(bought <- bought) {
+    <strong>@bought.id</strong>
+    @bought.providerKey
+    @bought.orderId
+    <a href="@controllers.routes.BoughtViewController.updateBought(bought.id)">Edit</a>
+    <a href="@controllers.routes.BoughtViewController.deleteBought(bought.id)">Delete</a>
+    <br>
+}

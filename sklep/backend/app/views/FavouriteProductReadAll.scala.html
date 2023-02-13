@@ -1,0 +1,8 @@
+@(favouriteProducts: Seq[FavouriteProduct])
+
+@for(favouriteProduct <- favouriteProducts) {
+    <strong>@favouriteProduct.id</strong>
+    <a href="@controllers.routes.FavouriteProductViewController.updateFavouriteProduct(favouriteProduct.id)">Edit</a>
+    <a href="@controllers.routes.FavouriteProductViewController.deleteFavouriteProduct(favouriteProduct.id)">Delete</a>
+    <br>
+}

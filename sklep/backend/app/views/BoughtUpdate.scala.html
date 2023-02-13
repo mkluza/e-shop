@@ -1,0 +1,40 @@
+@import controllers.UpdateBoughtForm
+@(bought: Form[UpdateBoughtForm], users: Seq[User], order: Seq[Order])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+    @form(controllers.routes.BoughtViewController.updateBoughtHandle) {
+        @helper.CSRF.formField
+        <input name="id" id="id" value="@bought("id").value" type="hidden" />
+
+        <label for="user"></label>
+        <select name="userId" id="user">
+        @for(entity <- users) {
+            @if(entity.id.toString == bought("user").value.getOrElse(0)) {
+                <option value="@entity.id" selected>@entity.email</option>
+            } else {
+                <option value="@entity.id">@entity.email</option>
+            }
+
+        }
+        </select>
+
+        <label for="oder"></label>
+        <select name="orderId" id="order">
+        @for(entity <- order) {
+            @if(entity.id.toString == bought("order").value.getOrElse(0)) {
+                <option value="@entity.id" selected>@entity.id</option>
+            } else {
+                <option value="@entity.id">@entity.id</option>
+            }
+
+        }
+        </select>
+
+
+        <div class="buttons">
+            <input type="submit" value="Update Bought"/>
+        </div>
+    }

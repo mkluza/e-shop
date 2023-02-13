@@ -1,0 +1,41 @@
+@import controllers.UpdateOpinionForm
+@(opinion: Form[UpdateOpinionForm], users: Seq[User], product: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
+
+    @import helper._
+
+    @flash.get("success").getOrElse("")
+
+    @form(controllers.routes.OpinionViewController.updateOpinionHandle) {
+        @helper.CSRF.formField
+        <input name="id" id="id" value="@opinion("id").value" type="hidden" />
+        @inputText(opinion("message"))
+
+        <label for="user"></label>
+        <select name="userId" id="user">
+        @for(entity <- users) {
+            @if(entity.id.toString == opinion("user").value.getOrElse(0)) {
+                <option value="@entity.id" selected>@entity.email</option>
+            } else {
+                <option value="@entity.id">@entity.email</option>
+            }
+
+        }
+        </select>
+
+        <label for="product"></label>
+        <select name="productId" id="product">
+        @for(entity <- product) {
+            @if(entity.id.toString == opinion("product").value.getOrElse(0)) {
+                <option value="@entity.id" selected>@entity.name</option>
+            } else {
+                <option value="@entity.id">@entity.id</option>
+            }
+
+        }
+        </select>
+
+
+        <div class="buttons">
+            <input type="submit" value="Update Opinion"/>
+        </div>
+    }

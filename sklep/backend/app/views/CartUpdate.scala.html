@@ -1,0 +1,41 @@
+@import controllers.UpdateCartForm
+@(cart: Form[UpdateCartForm], user: Seq[User], product: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.CartViewController.updateCartHandle) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@cart("id").value" type="hidden" />
+    @inputText(cart("amount"))
+
+    <label for="user"></label>
+    <select name="userId" id="user">
+    @for(entity <- user) {
+        @if(entity.id.toString == cart("user").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.email</option>
+        } else {
+            <option value="@entity.id">@entity.email</option>
+        }
+
+    }
+    </select>
+
+    <label for="product"></label>
+    <select name="productId" id="product">
+    @for(entity <- product) {
+        @if(entity.id.toString == cart("product").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.name</option>
+        } else {
+            <option value="@entity.id">@entity.name</option>
+        }
+
+    }
+    </select>
+
+
+    <div class="buttons">
+        <input type="submit" value="Update Cart"/>
+    </div>
+}
